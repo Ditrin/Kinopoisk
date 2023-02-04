@@ -11,9 +11,10 @@ interface CinemaSearchAPI {
     @Headers("X-API-KEY: e30ffed0-76ab-4dd6-b41f-4c9da2b2735b")
     suspend fun getAllMovies(@Query("type")type: String = "TOP_100_POPULAR_FILMS"): Movies
 
-    @GET("/v2.1/films/search-by-keyword")
+    @GET("/api/v2.1/films/search-by-keyword")
+    @Headers("X-API-KEY: e30ffed0-76ab-4dd6-b41f-4c9da2b2735b")
     suspend fun getSearchFilm(
-        @Query("name") query: String
+        @Query("keyword") query: String
     ) : Movies
 
 }

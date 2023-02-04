@@ -1,13 +1,13 @@
 package com.example.cinemasearch.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.cinemasearch.R
@@ -40,7 +40,7 @@ class MainScreenFragment: Fragment(R.layout.main_screen){
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = CinemaSearchAdapter()
-        viewModel.getCharacterList()
+        viewModel.getMoviesList()
         viewModel.isLoading.observe(viewLifecycleOwner){
             if(it){
                 binding.progressBar.visibility = View.VISIBLE
@@ -49,7 +49,7 @@ class MainScreenFragment: Fragment(R.layout.main_screen){
                 binding.progressBar.visibility = View.GONE
         }
 
-        viewModel.listCharacter.observe(viewLifecycleOwner){
+        viewModel.listMovie.observe(viewLifecycleOwner){
             binding.recyclerView.apply {
                 adapter = listAdapter
                 layoutManager = LinearLayoutManager(requireContext())
@@ -76,10 +76,12 @@ class MainScreenFragment: Fragment(R.layout.main_screen){
             swipe.isRefreshing = false
         }
 
-        binding.buttonSearchCharacter.setOnClickListener{
+        binding.buttonSearchMovie.setOnClickListener{
+            Log.e("Main", "size.toString()")
+
             viewModel.saveText(binding.searchMovie.text.toString())
-            viewModel.searchText.observe(viewLifecycleOwner){text->
-                viewModel.getSearchList(text)
+            viewModel.searchText.observe(viewLifecycleOwner){keyword->
+                viewModel.getSearchList(keyword)
             }
         }
     }

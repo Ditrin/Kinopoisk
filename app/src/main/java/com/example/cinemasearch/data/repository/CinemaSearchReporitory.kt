@@ -14,8 +14,8 @@ class CinemaSearchReporitory() {
         return value
     }
 
-    suspend fun getSearchCharacter(name: String): List<Film>{
-        return  Networking.cinemaSearchAPI.getSearchFilm(name).films
+    suspend fun getSearchMovie(keyword: String): List<Film>{
+        return  Networking.cinemaSearchAPI.getSearchFilm(keyword).films
     }
 
 }
