@@ -52,7 +52,7 @@ class MainScreenFragment: Fragment(R.layout.main_screen){
         viewModel.listCharacter.observe(viewLifecycleOwner){
             binding.recyclerView.apply {
                 adapter = listAdapter
-                layoutManager = GridLayoutManager(activity, 2)
+                layoutManager = LinearLayoutManager(requireContext())
                 val dividerItemDecoration = DividerItemDecoration(
                     context,
                     (layoutManager as LinearLayoutManager).orientation

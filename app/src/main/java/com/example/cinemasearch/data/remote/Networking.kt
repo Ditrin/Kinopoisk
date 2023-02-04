@@ -1,5 +1,7 @@
 package com.example.cinemasearch.data.remote
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -8,29 +10,25 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object Networking {
+
     private val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor { chain ->
-            val request = chain.request().newBuilder()
-                .addHeader("X-API-KEY","e30ffed0-76ab-4dd6-b41f-4c9da2b2735b")
-            val originalHttpUrl = chain.request().url
-            val url = originalHttpUrl.newBuilder()
-                .addQueryParameter("type", "TOP_100_POPULAR_FILMS")
-                .build()
-            request.url(url)
-            val response = chain.proceed(request.build())
-            return@addInterceptor response}
+        .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 
     private val contentType = "application/json".toMediaType()
 
     private val json = Json { ignoreUnknownKeys = true }
 
+    private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
+
+
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://kinopoiskapiunofficial.tech")
         .client(okHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val CinemaSearchAPI: CinemaSearchAPI
+    val cinemaSearchAPI: CinemaSearchAPI
         get() = retrofit.create(CinemaSearchAPI::class.java)
+
 }

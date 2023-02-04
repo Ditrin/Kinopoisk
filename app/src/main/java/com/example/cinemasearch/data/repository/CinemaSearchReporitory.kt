@@ -9,13 +9,13 @@ class CinemaSearchReporitory() {
     suspend fun getListMovies(): List<Film>{
         Log.e("Main", "size.toString()")
 
-        val value = Networking.CinemaSearchAPI.getAllMovies().films
+        val value = Networking.cinemaSearchAPI.getAllMovies().films
         Log.e("Main", value.size.toString())
         return value
     }
 
     suspend fun getSearchCharacter(name: String): List<Film>{
-        return  Networking.CinemaSearchAPI.getSearchFilm(name).films
+        return  Networking.cinemaSearchAPI.getSearchFilm(name).films
     }
 
 }

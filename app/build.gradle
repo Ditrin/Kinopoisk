@@ -65,6 +65,7 @@ dependencies {
 
     def fragment_version = '1.4.1'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    implementation 'com.squareup.moshi:moshi-kotlin:1.12.0'
 
 
     def glide_version = '4.13.0'
