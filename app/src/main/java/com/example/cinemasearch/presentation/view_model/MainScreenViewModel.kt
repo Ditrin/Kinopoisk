@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cinemasearch.data.DTOmodel.Film
-import com.example.cinemasearch.data.repository.CinemaSearchReporitory
+import com.example.cinemasearch.data.repository.CinemaSearchRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -14,7 +14,7 @@ class MainScreenViewModel:ViewModel() {
     private val listMoviesLiveData = MutableLiveData<List<Film>>()
     val listMovie: LiveData<List<Film>> = listMoviesLiveData
     private var job: Job? = null
-    private val repository = CinemaSearchReporitory()
+    private val repository = CinemaSearchRepository()
     private val isLoadingLiveData = MutableLiveData<Boolean>(true)
     val isLoading: LiveData<Boolean> = isLoadingLiveData
     private val searchTextLiveData = MutableLiveData<String>()

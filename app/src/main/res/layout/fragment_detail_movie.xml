@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,17 +7,27 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/appBarInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="40dp"
+        android:background="#00000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_vector" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/appBarInfo"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="?attr/homeAsUpIndicator" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    <ImageView
+        android:id="@+id/imageMovie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarInfo"
+        tools:srcCompat="@android:drawable/btn_star_big_on" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -26,50 +36,55 @@
         android:layout_gravity="center"
         android:visibility="gone"/>
 
-    <ImageView
-        android:id="@+id/imageMovie"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        tools:srcCompat="@android:drawable/btn_star_big_on" />
-
     <TextView
         android:id="@+id/nameMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="4dp"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageMovie"
+        app:layout_constraintStart_toStartOf="@+id/imageMovie"
+        app:layout_constraintTop_toBottomOf="@+id/imageMovie"
         tools:text="Название" />
 
     <TextView
         android:id="@+id/descriptionMovie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="40dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginTop="4dp"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameMovie"
         tools:text="Описание" />
 
     <TextView
         android:id="@+id/genreMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionMovie"
         tools:text="Жанры" />
 
     <TextView
         android:id="@+id/countriesMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genreMovie"
         tools:text="Страны" />
 
-    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

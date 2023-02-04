@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.cinemasearch.R
 import com.example.cinemasearch.databinding.MainScreenBinding
-import com.example.cinemasearch.presentation.adapters.CinemaSearchAdapter
+import com.example.cinemasearch.presentation.adapters.MainScreenAdapter
 import com.example.cinemasearch.presentation.fragments.MainScreenFragment.idId.idMovie
 import com.example.cinemasearch.presentation.view_model.MainScreenViewModel
 
 class MainScreenFragment: Fragment(R.layout.main_screen){
     private lateinit var binding: MainScreenBinding
     private val viewModel: MainScreenViewModel by viewModels()
-    private lateinit var listAdapter: CinemaSearchAdapter
+    private lateinit var listAdapter: MainScreenAdapter
     private lateinit var swipe: SwipeRefreshLayout
 
     override fun onCreateView(
@@ -39,7 +39,7 @@ class MainScreenFragment: Fragment(R.layout.main_screen){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        listAdapter = CinemaSearchAdapter()
+        listAdapter = MainScreenAdapter()
         viewModel.getMoviesList()
         viewModel.isLoading.observe(viewLifecycleOwner){
             if(it){

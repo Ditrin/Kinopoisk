@@ -9,7 +9,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.cinemasearch.data.DTOmodel.Film
 import com.example.cinemasearch.databinding.ItemMovieBinding
 
-class CinemaSearchAdapter  : RecyclerView.Adapter<CinemaSearchAdapter.ViewHolder>() {
+class MainScreenAdapter  : RecyclerView.Adapter<MainScreenAdapter.ViewHolder>() {
     private var characters = mutableListOf<Film>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -34,8 +34,7 @@ class CinemaSearchAdapter  : RecyclerView.Adapter<CinemaSearchAdapter.ViewHolder
                 nameMovie.text = character.nameRu
 
                 Glide.with(itemView)
-                    .load(character.posterUrl)
-                    .transform(CircleCrop())
+                    .load(character.posterUrlPreview)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageMovie)
             }
