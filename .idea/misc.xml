@@ -7,7 +7,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16945288753799392" />
         <entry key="app/src/main/res/layout/empty_view.xml" value="0.23229166666666667" />
         <entry key="app/src/main/res/layout/fragment_detail_movie.xml" value="0.24074074074074073" />
-        <entry key="app/src/main/res/layout/item_movie.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/item_movie.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_single.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/main_screen.xml" value="0.165" />
       </map>

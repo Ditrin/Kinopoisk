@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textColor="@color/black"
-        android:textSize="10sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageMovie"
         app:layout_constraintTop_toTopOf="@+id/imageMovie"
         tools:text="Spider-man"/>
@@ -35,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textColor="#000000"
-        android:textSize="10sp"
+        android:textColor="#303030"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imageMovie"
         app:layout_constraintTop_toBottomOf="@+id/nameMovie"
         tools:text="2007"/>

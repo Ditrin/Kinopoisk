@@ -50,7 +50,6 @@ class MainScreenViewModel:ViewModel() {
                 listMoviesLiveData.postValue(it)
             }.onFailure {
                 isLoadingLiveData.postValue(false)
-                isErrorLiveData.value = true
 
             }
         }
