@@ -20,5 +20,4 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
-
 }

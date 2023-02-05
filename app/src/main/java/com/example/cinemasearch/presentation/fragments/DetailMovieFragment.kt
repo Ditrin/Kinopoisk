@@ -68,7 +68,6 @@ companion object {
                     .load(it.posterUrl)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageMovie)
-
             }
         }
     }
