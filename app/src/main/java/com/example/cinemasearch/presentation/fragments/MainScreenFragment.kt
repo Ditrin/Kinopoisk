@@ -1,13 +1,11 @@
 package com.example.cinemasearch.presentation.fragments
 
-//import com.example.cinemasearch.presentation.fragments.MainScreenFragment.idId.idMovie
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.cinemasearch.R
@@ -51,11 +49,11 @@ class MainScreenFragment : Fragment(R.layout.main_screen) {
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
-//        viewModel.isError.observe(viewLifecycleOwner) {
-//            binding.emptyView.visibility = if (it) View.VISIBLE else View.GONE
-//            binding.recyclerView.visibility = if (it) View.GONE else View.VISIBLE
-//
-//        }
+        viewModel.isError.observe(viewLifecycleOwner) {
+            binding.emptyView.visibility = if (it) View.VISIBLE else View.GONE
+            binding.recyclerView.visibility = if (it) View.GONE else View.VISIBLE
+
+        }
 
         viewModel.listMovie.observe(viewLifecycleOwner) {
             listAdapter.setMovieList(it)
@@ -68,17 +66,11 @@ class MainScreenFragment : Fragment(R.layout.main_screen) {
         }
     }
 
-
     private fun initRecyclerView() {
         listAdapter = MainScreenAdapter()
         binding.recyclerView.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(requireContext())
-            val dividerItemDecoration = DividerItemDecoration(
-                context,
-                (layoutManager as LinearLayoutManager).orientation
-            )
-            addItemDecoration(dividerItemDecoration)
         }
     }
 }

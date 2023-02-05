@@ -16,8 +16,7 @@ class MainScreenViewModel:ViewModel() {
     private val repository = CinemaSearchRepository()
     private val isLoadingLiveData = MutableLiveData<Boolean>(true)
     val isLoading: LiveData<Boolean> = isLoadingLiveData
-
-    private val isErrorLiveData = MutableLiveData(true)
+    private val isErrorLiveData = MutableLiveData(false)
     val isError: LiveData<Boolean> = isErrorLiveData
 
     init {
@@ -33,9 +32,10 @@ class MainScreenViewModel:ViewModel() {
             }.onSuccess {
                 isLoadingLiveData.postValue(false)
                 listMoviesLiveData.postValue(it)
+                isErrorLiveData.value = false
             }.onFailure {
                 isLoadingLiveData.postValue(false)
-
+                isErrorLiveData.value = true
             }
         }
     }
@@ -48,9 +48,10 @@ class MainScreenViewModel:ViewModel() {
             }.onSuccess {
                 isLoadingLiveData.postValue(false)
                 listMoviesLiveData.postValue(it)
+                isErrorLiveData.value = false
             }.onFailure {
                 isLoadingLiveData.postValue(false)
-
+                isErrorLiveData.value = true
             }
         }
     }
@@ -67,8 +68,10 @@ class MainScreenViewModel:ViewModel() {
             }.onSuccess {
                 isLoadingLiveData.postValue(false)
                 listMoviesLiveData.postValue(it)
+                isErrorLiveData.value = false
             }.onFailure {
                 isLoadingLiveData.postValue(false)
+                isErrorLiveData.value = true
             }
         }
     }
