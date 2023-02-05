@@ -6,38 +6,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemasearch.databinding.ItemSingleBinding
 
 class DetailMovieAdapter : RecyclerView.Adapter<DetailMovieAdapter.ViewHolder>() {
-    private var singleCharacter: List<String> = emptyList()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailMovieAdapter.ViewHolder {
+    private var singleMovie: List<String> = emptyList()
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DetailMovieAdapter.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemSingleBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DetailMovieAdapter.ViewHolder, position: Int) {
-        holder.bind(singleCharacter[position])
+        holder.bind(singleMovie[position])
         holder.itemView.setOnClickListener {
-            onItemClickListener?.let { it(singleCharacter[position]) }
+            onItemClickListener?.let { it(singleMovie[position]) }
         }
     }
 
-    override fun getItemCount(): Int = singleCharacter.size
+    override fun getItemCount(): Int = singleMovie.size
 
     inner class ViewHolder(private val binding: ItemSingleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(singleCharacter: String) {
+        fun bind(singleMovie: String) {
             with(binding) {
-                single.text = singleCharacter
+                single.text = singleMovie
             }
         }
     }
 
-    fun setSingleCharacter(characterSingle: List<String>) {
-        singleCharacter = characterSingle
-    }
-
     private var onItemClickListener: ((String) -> Unit)? = null
-
-    fun setOnClickListener(listener: (String) -> Unit) {
-        onItemClickListener = listener
-    }
 }

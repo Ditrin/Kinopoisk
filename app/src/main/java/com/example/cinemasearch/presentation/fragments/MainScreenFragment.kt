@@ -59,7 +59,7 @@ class MainScreenFragment: Fragment(R.layout.main_screen){
                 )
                 addItemDecoration(dividerItemDecoration)
             }
-            listAdapter.setCharacterList(it)
+            listAdapter.setMovieList(it)
 
             listAdapter.setOnClickListener {film->
                 parentFragmentManager.beginTransaction().apply  {

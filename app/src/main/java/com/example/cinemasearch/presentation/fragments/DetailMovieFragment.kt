@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.cinemasearch.R
+import com.example.cinemasearch.data.DTOmodel.CountryX
+import com.example.cinemasearch.data.DTOmodel.GenreX
 import com.example.cinemasearch.databinding.FragmentDetailMovieBinding
 import com.example.cinemasearch.presentation.adapters.DetailMovieAdapter
 import com.example.cinemasearch.presentation.fragments.MainScreenFragment.idId.idMovie
@@ -35,7 +37,7 @@ class DetailMovieFragment: Fragment(R.layout.fragment_detail_movie) {
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = DetailMovieAdapter()
-        viewModel.getSingleCharacter(idMovie)
+        viewModel.getSingleMovie(idMovie)
         viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE
@@ -44,12 +46,12 @@ class DetailMovieFragment: Fragment(R.layout.fragment_detail_movie) {
                 binding.progressBar.visibility = View.GONE
         }
 
-        viewModel.singleCharacter.observe(viewLifecycleOwner) {
+        viewModel.singleMovie.observe(viewLifecycleOwner) {
             with(binding) {
-                genreMovie.text = it.genres.first().genre
+                genreMovie.text = it.genres.map(GenreX::genre).joinToString()
                 nameMovie.text = it.nameRu
                 descriptionMovie.text = it.description
-                countriesMovie.text = it.countries.first().country
+                countriesMovie.text = it.countries.map(CountryX::country).joinToString()
 
                 Glide.with(this@DetailMovieFragment)
                     .load(it.posterUrl)

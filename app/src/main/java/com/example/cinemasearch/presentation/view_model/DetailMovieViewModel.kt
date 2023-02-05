@@ -10,21 +10,21 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class DetailMovieViewModel: ViewModel() {
-    private val singleCharacterLiveData = MutableLiveData<FilmById>()
-    val singleCharacter: LiveData<FilmById> = singleCharacterLiveData
+    private val singleMovieLiveData = MutableLiveData<FilmById>()
+    val singleMovie: LiveData<FilmById> = singleMovieLiveData
     private var job: Job? = null
     private val repository = CinemaSearchRepository()
     private val isLoadingLiveData = MutableLiveData<Boolean>(true)
     val isLoading: LiveData<Boolean> = isLoadingLiveData
 
-    fun getSingleCharacter(id: Int) {
+    fun getSingleMovie(id: Int) {
         job?.cancel()
         job = viewModelScope.launch {
             kotlin.runCatching {
                 repository.getSingleMovie(id)
             }.onSuccess {
                 isLoadingLiveData.postValue(false)
-                singleCharacterLiveData.postValue(it)
+                singleMovieLiveData.postValue(it)
             }.onFailure {
                     isLoadingLiveData.postValue(false)
                     val tmp = it
