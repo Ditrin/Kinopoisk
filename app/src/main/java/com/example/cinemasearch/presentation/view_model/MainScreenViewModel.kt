@@ -16,15 +16,15 @@ class MainScreenViewModel:ViewModel() {
     private val repository = CinemaSearchRepository()
     private val isLoadingLiveData = MutableLiveData<Boolean>(true)
     val isLoading: LiveData<Boolean> = isLoadingLiveData
-    private val searchTextLiveData = MutableLiveData<String>()
-    val searchText: LiveData<String> = searchTextLiveData
 
-    fun saveText(text: String) {
-        searchTextLiveData.postValue("")
-        searchTextLiveData.postValue(text)
+    private val isErrorLiveData = MutableLiveData(true)
+    val isError: LiveData<Boolean> = isErrorLiveData
+
+    init {
+        getMoviesList()
     }
 
-    fun refreshList() {
+    fun onRefreshList() {
         listMoviesLiveData.postValue(emptyList())
         job?.cancel()
         job = viewModelScope.launch {
@@ -35,12 +35,12 @@ class MainScreenViewModel:ViewModel() {
                 listMoviesLiveData.postValue(it)
             }.onFailure {
                 isLoadingLiveData.postValue(false)
-                val tmp = it
+
             }
         }
     }
 
-    fun getMoviesList() {
+    private fun getMoviesList() {
         job?.cancel()
         job = viewModelScope.launch {
             kotlin.runCatching {
@@ -50,22 +50,26 @@ class MainScreenViewModel:ViewModel() {
                 listMoviesLiveData.postValue(it)
             }.onFailure {
                 isLoadingLiveData.postValue(false)
-                val tmp = it
+                isErrorLiveData.value = true
+
             }
         }
     }
 
-    fun getSearchList(keyword: String) {
+    fun onSearchClicked(keyword: String) {
         job?.cancel()
         job = viewModelScope.launch {
             kotlin.runCatching {
-                repository.getSearchMovie(keyword)
+                if (keyword.isBlank()) {
+                    repository.getListMovies()
+                } else {
+                    repository.getSearchMovie(keyword)
+                }
             }.onSuccess {
                 isLoadingLiveData.postValue(false)
                 listMoviesLiveData.postValue(it)
             }.onFailure {
                 isLoadingLiveData.postValue(false)
-                val tmp = it
             }
         }
     }

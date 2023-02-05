@@ -17,7 +17,7 @@ class DetailMovieViewModel: ViewModel() {
     private val isLoadingLiveData = MutableLiveData<Boolean>(true)
     val isLoading: LiveData<Boolean> = isLoadingLiveData
 
-    fun getSingleMovie(id: Int) {
+    fun onInitScreen(id: Int) {
         job?.cancel()
         job = viewModelScope.launch {
             kotlin.runCatching {
@@ -27,7 +27,6 @@ class DetailMovieViewModel: ViewModel() {
                 singleMovieLiveData.postValue(it)
             }.onFailure {
                     isLoadingLiveData.postValue(false)
-                    val tmp = it
             }
         }
     }

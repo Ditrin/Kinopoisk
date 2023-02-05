@@ -12,13 +12,26 @@ import com.example.cinemasearch.R
 import com.example.cinemasearch.data.model.CountryX
 import com.example.cinemasearch.data.model.GenreX
 import com.example.cinemasearch.databinding.FragmentDetailMovieBinding
-import com.example.cinemasearch.presentation.fragments.MainScreenFragment.idId.idMovie
 import com.example.cinemasearch.presentation.view_model.DetailMovieViewModel
 
 class DetailMovieFragment: Fragment(R.layout.fragment_detail_movie) {
 
+companion object {
+    private const val ARG_ID: String = "ARG_ID"
+
+    fun getInstance(id: Int): Fragment {
+        return DetailMovieFragment().apply {
+            arguments = Bundle().apply {
+                putInt(ARG_ID, id)
+            }
+        }
+    }
+}
+
     private lateinit var binding: FragmentDetailMovieBinding
     private val viewModel: DetailMovieViewModel by viewModels()
+
+    private val movieId: Int by lazy{arguments?.getInt(ARG_ID) ?: error("Missing id")}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +48,7 @@ class DetailMovieFragment: Fragment(R.layout.fragment_detail_movie) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getSingleMovie(idMovie)
+        viewModel.onInitScreen(movieId)
         viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE

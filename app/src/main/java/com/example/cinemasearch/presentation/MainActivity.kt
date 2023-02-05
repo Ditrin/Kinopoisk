@@ -15,9 +15,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
-        replace(R.id.fragmentContainer, fragment)
-        commit()
-    }
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainer, fragment)
+            commit()
+        }
 
 }
