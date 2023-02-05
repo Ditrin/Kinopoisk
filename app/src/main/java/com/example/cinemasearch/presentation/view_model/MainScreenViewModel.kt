@@ -10,7 +10,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MainScreenViewModel:ViewModel() {
-
     private val listMoviesLiveData = MutableLiveData<List<Film>>()
     val listMovie: LiveData<List<Film>> = listMoviesLiveData
     private var job: Job? = null

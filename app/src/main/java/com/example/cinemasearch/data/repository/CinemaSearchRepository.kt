@@ -19,5 +19,4 @@ class CinemaSearchRepository {
         return Networking.cinemaSearchAPI.getSingleMovie(id)
     }
 
-
 }

@@ -21,7 +21,6 @@ object Networking {
 
     private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
-
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://kinopoiskapiunofficial.tech")
         .client(okHttpClient)
