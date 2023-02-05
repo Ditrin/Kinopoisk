@@ -1,14 +1,13 @@
 package com.example.cinemasearch.data.repository
 
-import com.example.cinemasearch.data.DTOmodel.Film
-import com.example.cinemasearch.data.DTOmodel.FilmById
+import com.example.cinemasearch.data.model.Film
+import com.example.cinemasearch.data.model.FilmById
 import com.example.cinemasearch.data.remote.Networking
 
 class CinemaSearchRepository {
 
-    suspend fun getListMovies(): List<Film>{
-        val value = Networking.cinemaSearchAPI.getAllMovies().films
-        return value
+    suspend fun getListMovies(): List<Film> {
+        return Networking.cinemaSearchAPI.getAllMovies().films
     }
 
     suspend fun getSearchMovie(keyword: String): List<Film>{

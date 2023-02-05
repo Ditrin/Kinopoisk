@@ -1,7 +1,7 @@
 package com.example.cinemasearch.data.remote
 
-import com.example.cinemasearch.data.DTOmodel.FilmById
-import com.example.cinemasearch.data.DTOmodel.Movies
+import com.example.cinemasearch.data.model.FilmById
+import com.example.cinemasearch.data.model.Movies
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path

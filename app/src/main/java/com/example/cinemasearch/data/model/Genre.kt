@@ -1,8 +1,8 @@
-package com.example.cinemasearch.data.DTOmodel
+package com.example.cinemasearch.data.model
 
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class GenreX(
+data class Genre(
     val genre: String
 )

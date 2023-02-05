@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cinemasearch.data.DTOmodel.Film
+import com.example.cinemasearch.data.model.Film
 import com.example.cinemasearch.data.repository.CinemaSearchRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

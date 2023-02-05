@@ -9,17 +9,16 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.cinemasearch.R
-import com.example.cinemasearch.data.DTOmodel.CountryX
-import com.example.cinemasearch.data.DTOmodel.GenreX
+import com.example.cinemasearch.data.model.CountryX
+import com.example.cinemasearch.data.model.GenreX
 import com.example.cinemasearch.databinding.FragmentDetailMovieBinding
-import com.example.cinemasearch.presentation.adapters.DetailMovieAdapter
 import com.example.cinemasearch.presentation.fragments.MainScreenFragment.idId.idMovie
 import com.example.cinemasearch.presentation.view_model.DetailMovieViewModel
 
 class DetailMovieFragment: Fragment(R.layout.fragment_detail_movie) {
+
     private lateinit var binding: FragmentDetailMovieBinding
     private val viewModel: DetailMovieViewModel by viewModels()
-    private lateinit var listAdapter: DetailMovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +35,6 @@ class DetailMovieFragment: Fragment(R.layout.fragment_detail_movie) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        listAdapter = DetailMovieAdapter()
         viewModel.getSingleMovie(idMovie)
         viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it) {

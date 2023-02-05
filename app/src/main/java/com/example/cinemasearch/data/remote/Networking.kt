@@ -15,10 +15,6 @@ object Networking {
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 
-    private val contentType = "application/json".toMediaType()
-
-    private val json = Json { ignoreUnknownKeys = true }
-
     private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
     private val retrofit = Retrofit.Builder()

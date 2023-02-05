@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.cinemasearch.data.DTOmodel.Film
+import com.example.cinemasearch.data.model.Film
 import com.example.cinemasearch.databinding.ItemMovieBinding
 
 class MainScreenAdapter  : RecyclerView.Adapter<MainScreenAdapter.ViewHolder>() {

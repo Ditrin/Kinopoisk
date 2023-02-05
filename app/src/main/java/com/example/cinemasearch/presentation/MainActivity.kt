@@ -10,7 +10,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setCurrentFragment(MainScreenFragment())
+        if (savedInstanceState == null) {
+            setCurrentFragment(MainScreenFragment())
+        }
     }
 
     fun setCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
